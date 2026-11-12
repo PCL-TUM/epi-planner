@@ -1,0 +1,930 @@
+:root {
+  color-scheme: light;
+  --font-sans: "Prompt", "Leelawadee UI", "Noto Sans Thai", system-ui, sans-serif;
+  --ink: #0f2942;
+  --muted: #526c84;
+  --sky: #0284c7;
+  --sky-hover: #0369a1;
+  --sky-dark: #075985;
+  --sky-light: #e0f2fe;
+  --glass-bg: rgba(255, 255, 255, 0.84);
+  --glass-border: rgba(255, 255, 255, 0.85);
+  --glass-shadow: 0 12px 36px rgba(14, 116, 184, 0.08);
+  --line: rgba(115, 170, 202, 0.42);
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--ink);
+  min-width: 320px;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  background-color: #f0f8ff;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(3, 105, 161, 0.2) 1px, transparent 1.25px),
+    linear-gradient(135deg, #f7fbff 0%, #e9f5ff 48%, #f2f8ff 100%);
+  background-size: 18px 18px, 100% 100%;
+  line-height: 1.6;
+}
+
+/* Ambient Floating Orbs for Glassmorphism Depth */
+.bg-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(88px);
+  opacity: 0.62;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.orb-1 {
+  width: 440px;
+  height: 440px;
+  top: -120px;
+  left: -100px;
+  background: rgba(56, 189, 248, 0.28);
+}
+
+.orb-2 {
+  width: 380px;
+  height: 380px;
+  top: 25%;
+  right: -120px;
+  background: rgba(96, 165, 250, 0.22);
+}
+
+.orb-3 {
+  width: 420px;
+  height: 420px;
+  bottom: -140px;
+  left: 20%;
+  background: rgba(125, 211, 252, 0.24);
+}
+
+.text-sky { color: var(--sky) !important; }
+.border-glass { border-color: rgba(186, 224, 245, 0.6) !important; }
+
+/* Glass Header Banner */
+.glass-header {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(24px, 4vw, 38px);
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.88), rgba(14, 165, 233, 0.82));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 16px 40px rgba(2, 132, 199, 0.18);
+  color: #ffffff;
+}
+
+.glass-header::after {
+  position: absolute;
+  right: -50px;
+  bottom: -140px;
+  width: 300px;
+  height: 300px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  box-shadow: 0 0 0 32px rgba(255, 255, 255, 0.06), 0 0 0 68px rgba(255, 255, 255, 0.04);
+  content: "";
+  pointer-events: none;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 13px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(6px);
+  color: #f0f9ff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.glass-header h1 {
+  font-size: clamp(1.6rem, 3.8vw, 2.25rem);
+  letter-spacing: -0.01em;
+}
+
+.glass-header p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.header-icon-box {
+  width: 68px;
+  height: 68px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #ffffff;
+  backdrop-filter: blur(8px);
+}
+
+/* Glass Cards */
+.glass-card {
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-subcard {
+  background: rgba(240, 249, 255, 0.65);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(186, 230, 253, 0.85);
+}
+
+.section-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  background: rgba(224, 242, 254, 0.9);
+  border: 1px solid rgba(186, 230, 253, 0.9);
+  color: var(--sky);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+}
+
+/* Glass Notice Boxes */
+.glass-notice {
+  padding: 15px 18px;
+  border: 1px solid rgba(253, 224, 71, 0.65);
+  border-left: 4px solid #eab308;
+  border-radius: 16px;
+  background: rgba(254, 252, 232, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #713f12;
+  box-shadow: 0 6px 20px rgba(234, 179, 8, 0.06);
+}
+
+.notice-icon {
+  color: #ca8a04;
+  margin-top: 2px;
+}
+
+/* Glass Form Controls */
+.glass-input {
+  min-height: 46px;
+  border: 1px solid rgba(186, 224, 245, 0.9);
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.85);
+  color: var(--ink);
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.glass-input:focus {
+  border-color: var(--sky);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 0.25rem rgba(2, 132, 199, 0.16);
+}
+
+.birth-age-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border: 1px solid rgba(2, 132, 199, 0.24);
+  border-radius: 12px;
+  background: linear-gradient(110deg, rgba(224, 242, 254, 0.95), rgba(240, 249, 255, 0.72));
+  color: var(--sky-dark);
+  box-shadow: 0 3px 10px rgba(2, 132, 199, 0.07);
+  font-size: 0.84rem;
+}
+
+.birth-age-icon {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  place-items: center;
+  border-radius: 9px;
+  background: rgba(2, 132, 199, 0.12);
+  color: var(--sky);
+}
+
+.birth-age-label { color: var(--muted); }
+.birth-age-value { color: var(--sky-dark); }
+
+/* Date Picker & Glass Popover */
+.date-picker { position: relative; max-width: 100%; }
+.date-picker-control { position: relative; }
+.date-picker-control input[type="text"] {
+  padding-right: 46px;
+  border-radius: 12px !important;
+}
+
+.calendar-toggle {
+  position: absolute !important;
+  top: 4px;
+  right: 4px;
+  z-index: 5;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 9px !important;
+  background: transparent;
+  color: var(--sky);
+  transition: background-color 0.15s ease;
+}
+
+.calendar-toggle:hover {
+  background: var(--sky-light);
+  color: var(--sky-dark);
+}
+
+.glass-popover {
+  position: absolute;
+  z-index: 1050;
+  top: calc(100% + 8px);
+  left: 0;
+  width: min(340px, calc(100vw - 32px));
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 20px 45px rgba(15, 41, 66, 0.15);
+}
+
+.calendar-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.calendar-toolbar h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.calendar-nav {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--sky);
+}
+
+.calendar-nav:hover:not(:disabled) { background: var(--sky-light); }
+.calendar-nav:disabled { cursor: not-allowed; opacity: 0.4; }
+
+.calendar-grid {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 3px;
+}
+
+.calendar-grid th, .calendar-grid td {
+  height: 36px;
+  padding: 0;
+  border: 0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.calendar-grid th {
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.calendar-day {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  margin: auto;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.calendar-day:hover:not(:disabled) {
+  background: var(--sky-light);
+  color: var(--sky-hover);
+}
+
+.calendar-day.is-selected, .calendar-day.is-selected:hover {
+  background: var(--sky);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3);
+}
+
+.calendar-day.is-today:not(.is-selected) {
+  box-shadow: inset 0 0 0 1.5px var(--sky);
+  color: var(--sky);
+  font-weight: 600;
+}
+
+.calendar-day:disabled {
+  cursor: not-allowed;
+  color: #cbd5e1;
+}
+
+.calendar-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.calendar-today {
+  padding: 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--sky);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.calendar-today:hover { background: var(--sky-light); }
+.calendar-help {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.74rem;
+  text-align: center;
+}
+
+/* Sky Gradient & Glass Buttons */
+.btn-sky {
+  background: linear-gradient(135deg, #0284c7, #0ea5e9);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  border-radius: 13px;
+  box-shadow: 0 6px 18px rgba(2, 132, 199, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btn-sky:hover, .btn-sky:focus {
+  background: linear-gradient(135deg, #0369a1, #0284c7);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(2, 132, 199, 0.32);
+}
+
+.btn-glass-outline {
+  border: 1px solid rgba(2, 132, 199, 0.3);
+  color: var(--sky-dark);
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(8px);
+  border-radius: 11px;
+  font-weight: 600;
+  transition: all 0.18s ease;
+}
+
+.btn-glass-outline:hover {
+  background: rgba(224, 242, 254, 0.9);
+  border-color: var(--sky);
+  color: var(--sky-dark);
+}
+
+/* Summary Pills */
+.summary-panel {
+  padding: 12px 14px;
+  border: 1px solid rgba(2, 132, 199, 0.28);
+  border-left: 4px solid var(--sky);
+  border-radius: 15px;
+  background: linear-gradient(120deg, rgba(224, 242, 254, 0.88), rgba(255, 255, 255, 0.8));
+  box-shadow: 0 5px 16px rgba(2, 132, 199, 0.08);
+}
+
+.summary-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 8px;
+  color: var(--sky-dark);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.summary-panel-title i { color: var(--sky); }
+
+.summary-pill {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(115, 170, 202, 0.36);
+  color: var(--ink);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.summary-pill--birth {
+  background: var(--sky);
+  border-color: var(--sky);
+  color: #ffffff;
+}
+
+.summary-pill:empty { display: none; }
+
+/* Glass Schedule Table */
+.table-wrap {
+  border: 1px solid rgba(115, 170, 202, 0.32);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.55);
+  overflow: hidden;
+  box-shadow: 0 5px 16px rgba(15, 41, 66, 0.045), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.schedule-table {
+  --bs-table-bg: transparent;
+  --bs-table-border-color: rgba(115, 170, 202, 0.3);
+}
+
+.table.schedule-table th {
+  background-color: rgba(224, 242, 254, 0.65);
+  color: var(--sky-dark);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 14px 15px;
+  border-right: 1px solid rgba(115, 170, 202, 0.25);
+  border-bottom: 1px solid rgba(115, 170, 202, 0.38);
+  white-space: nowrap;
+}
+
+.table.schedule-table td {
+  padding: 14px 15px;
+  border-right: 1px solid rgba(115, 170, 202, 0.18);
+  border-bottom: 1px solid rgba(115, 170, 202, 0.32);
+  color: var(--ink);
+  font-size: 0.92rem;
+}
+
+.table.schedule-table th:last-child, .table.schedule-table td:last-child { border-right: 0; }
+.schedule-table tbody tr:last-child td { border-bottom: 0; }
+.schedule-table tbody tr:nth-child(even) td { background-color: rgba(224, 242, 254, 0.22); }
+.schedule-table tbody tr:hover td { background-color: rgba(224, 242, 254, 0.55); }
+
+.cell-label { display: none; }
+.cell-value { display: block; }
+.schedule-table td:nth-child(3),
+.schedule-table td:nth-child(4) { font-variant-numeric: tabular-nums; }
+
+.date-value {
+  display: block;
+  color: var(--sky-hover);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.date-age {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+/* Holiday Note */
+.holiday-note {
+  padding: 14px 16px;
+  border: 1px solid rgba(253, 224, 71, 0.55);
+  border-left: 4px solid #eab308;
+  border-radius: 12px;
+  background: rgba(254, 252, 232, 0.72);
+  color: #713f12;
+  font-size: 0.88rem;
+}
+
+/* Glass PCV Cards Grid */
+.pcv-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.pcv-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 18px;
+  border: 1px solid rgba(115, 170, 202, 0.32);
+  border-radius: 18px;
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.82), rgba(224, 242, 254, 0.55));
+  backdrop-filter: blur(12px);
+  box-shadow: 0 7px 18px rgba(15, 41, 66, 0.055);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.pcv-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(2, 132, 199, 0.12);
+}
+
+.pcv-dose {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(2, 132, 199, 0.12);
+  border: 1px solid rgba(2, 132, 199, 0.2);
+  color: var(--sky-dark);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.pcv-card-label {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.pcv-card-age {
+  margin: 2px 0 0;
+  color: var(--ink);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.pcv-card-divider {
+  width: 100%;
+  margin-top: 12px;
+  border-top: 1px dashed var(--line);
+}
+
+.pcv-appointment-label { color: var(--sky-dark); }
+
+.pcv-card-date {
+  margin-top: 4px;
+  color: var(--sky-hover);
+  font-size: 0.92rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.pcv-card-age-detail {
+  margin-top: 1px;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+[hidden] { display: none !important; }
+
+/* Responsive Mobile View */
+@media (max-width: 767.98px) {
+  .table-wrap {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  .schedule-table,
+  .schedule-table tbody {
+    display: block;
+    width: 100%;
+  }
+
+  .schedule-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .schedule-table tbody {
+    display: grid;
+    gap: 12px;
+  }
+
+  .schedule-table tr {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 12px;
+    padding: 13px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.06);
+  }
+
+  .schedule-table td {
+    display: flex;
+    flex-direction: column;
+    padding: 6px 0;
+    border: 0;
+    background: transparent !important;
+    font-size: 0.86rem;
+  }
+
+  .cell-label {
+    display: block;
+    margin-bottom: 2px;
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+
+  .schedule-table td:nth-child(1),
+  .schedule-table td:nth-child(2) {
+    grid-column: 1 / -1;
+  }
+
+  .schedule-table td:nth-child(1) {
+    padding-bottom: 2px;
+    color: var(--sky-dark);
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  .schedule-table td:nth-child(2) {
+    padding-top: 2px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--line);
+  }
+
+  .schedule-table td:nth-child(3),
+  .schedule-table td:nth-child(4) {
+    padding-top: 10px;
+  }
+
+  .date-value, .date-age { white-space: normal; }
+  .pcv-cards { grid-template-columns: 1fr; }
+}
+
+@page {
+  size: A4 landscape;
+  margin: 5mm;
+}
+
+/* Print Layout */
+@media print {
+  body {
+    background: white !important;
+    color: #000 !important;
+    font-size: 8pt;
+    line-height: 1.15;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .bg-orb { display: none !important; }
+  .container {
+    width: 138.5mm !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    padding: 0 !important;
+  }
+  .container, .container * { color: #000 !important; }
+  .border-glass { border-color: #888 !important; }
+  .glass-header {
+    margin-bottom: 1mm !important;
+    padding: 0 0 1.5mm !important;
+    border-radius: 0 !important;
+    background: white !important;
+    box-shadow: none !important;
+    color: black !important;
+    border-bottom: 0.5mm solid #333;
+  }
+  .glass-header::after, .header-icon-box, .input-section, .print-button { display: none !important; }
+  .eyebrow {
+    padding: 0.3mm 1.5mm;
+    border: 0.2mm solid #333;
+    color: black;
+    background: transparent;
+    font-size: 7pt;
+  }
+  .glass-header h1 {
+    margin: 0.5mm 0 !important;
+    font-size: 12pt;
+    line-height: 1.05;
+  }
+  .glass-header p { display: none !important; }
+  .glass-card { border: 0 !important; background: white !important; box-shadow: none !important; }
+  .card-body { padding: 0 !important; }
+  .section-icon { display: none !important; }
+  .glass-notice {
+    margin-bottom: 2mm !important;
+    padding: 1mm 2mm;
+    border: 0.2mm solid #666;
+    border-left: 1mm solid #333;
+    border-radius: 2mm;
+    background: white;
+    box-shadow: none;
+    color: black;
+    font-size: 6pt;
+    line-height: 1.2;
+  }
+  .notice-icon { display: none; }
+  .result-heading {
+    margin-bottom: 1mm !important;
+    padding-bottom: 1mm !important;
+    break-inside: avoid;
+  }
+  #results-heading { font-size: 11pt; }
+  .summary-panel {
+    margin-top: 1mm !important;
+    padding: 1mm 1.5mm;
+    border: 0.2mm solid #777;
+    border-left: 0.8mm solid #333;
+    border-radius: 2mm;
+    background: white;
+    box-shadow: none;
+  }
+  .summary-panel-title {
+    margin-bottom: 0.8mm;
+    color: black;
+    font-size: 7pt;
+  }
+  .summary-pill, .summary-pill--birth {
+    padding: 0.5mm 1.5mm;
+    border-color: #999;
+    background: white;
+    color: black;
+    font-size: 7pt;
+    line-height: 1.2;
+  }
+  .table-wrap {
+    border: 0.2mm solid #888;
+    border-radius: 0;
+    background: white;
+    box-shadow: none;
+    overflow: visible;
+    break-inside: avoid;
+  }
+  .schedule-table {
+    display: table !important;
+    width: 100% !important;
+    table-layout: fixed;
+    font-size: 8pt;
+  }
+  .schedule-table thead {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    clip: auto !important;
+  }
+  .schedule-table tbody { display: table-row-group !important; }
+  .schedule-table tr {
+    display: table-row !important;
+    border: 0 !important;
+    background: white !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+  .table.schedule-table th {
+    padding: 1mm !important;
+    border-right-color: #ccc !important;
+    border-bottom: 0.25mm solid #888 !important;
+    background: white !important;
+    font-size: 7.5pt !important;
+    line-height: 1.1;
+    white-space: normal;
+  }
+  .table.schedule-table td {
+    display: table-cell !important;
+    padding: 2mm 1mm !important;
+    border-right-color: #ccc !important;
+    border-bottom: 0.2mm solid #ccc !important;
+    background: white !important;
+    font-size: 8pt !important;
+    line-height: 1.1;
+    vertical-align: middle;
+  }
+  .schedule-table th:nth-child(1), .schedule-table td:nth-child(1) { width: 13%; }
+  .schedule-table th:nth-child(2), .schedule-table td:nth-child(2) { width: 34%; }
+  .schedule-table th:nth-child(3), .schedule-table td:nth-child(3),
+  .schedule-table th:nth-child(4), .schedule-table td:nth-child(4) { width: 26.5%; }
+  .cell-label { display: none !important; }
+  .date-value { color: black !important; font-size: 8pt; white-space: normal; }
+  .date-age { margin-top: 0; color: #333; font-size: 7pt; line-height: 1.1; white-space: normal; }
+  .holiday-note {
+    margin-top: 1.5mm !important;
+    padding: 1mm 1.5mm;
+    border: 0.2mm solid #777;
+    border-left: 0.8mm solid #333;
+    border-radius: 2mm;
+    background: white;
+    color: black;
+    font-size: 7pt;
+    line-height: 1.15;
+  }
+  .holiday-note > i { display: none; }
+  #results > .card-body > section[aria-labelledby="pcv-heading"] {
+    margin-top: 1.5mm !important;
+    padding-top: 1.5mm !important;
+    break-inside: avoid;
+  }
+  #pcv-heading { font-size: 10pt; }
+  .pcv-notice {
+    margin-bottom: 1mm !important;
+    padding: 0.8mm 1.2mm;
+    border-left-width: 0.6mm;
+    font-size: 7pt;
+    line-height: 1.1;
+  }
+  .pcv-notice > i { display: none; }
+  .pcv-notice .small { font-size: inherit; }
+  .pcv-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 1.5mm;
+  }
+  .pcv-card {
+    padding: 1.5mm 2mm !important;
+    border: 0.2mm solid #999 !important;
+    border-radius: 2mm !important;
+    background: white !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+  .pcv-dose {
+    padding: 0.2mm 1mm;
+    border-color: #999;
+    background: white;
+    color: black;
+    font-size: 7pt;
+  }
+  .pcv-card-label { margin-top: 1mm; color: #333; font-size: 7pt; line-height: 1.1; }
+  .pcv-card-age { margin-top: 0; font-size: 9pt; line-height: 1.1; }
+  .pcv-card-date { margin-top: 0.5mm; color: black !important; font-size: 7.5pt; line-height: 1.1; }
+  .pcv-card-age-detail { margin-top: 0; color: #333; font-size: 7pt; line-height: 1.1; }
+  .pcv-card-divider { margin-top: 1mm; border-color: #888; }
+}
+/* =========================================================
+   Bootstrap Invalid Feedback & SweetAlert2 Glass Styling
+   ========================================================= */
+
+/* ปรับตำแหน่งไอคอนปฏิทินไม่ให้ทับกับไอคอนตกใจสีแดงของ Bootstrap */
+.date-picker-control .form-control.is-invalid {
+  padding-right: 76px !important;
+  background-position: right 44px center !important;
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 0.22rem rgba(239, 68, 68, 0.15) !important;
+}
+
+.form-select.is-invalid {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 0.22rem rgba(239, 68, 68, 0.15) !important;
+}
+
+.invalid-feedback {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #dc2626;
+}
+
+/* ตกแต่ง SweetAlert2 ให้เข้ากับธีม Glassmorphism สีฟ้า */
+.swal-glass-popup {
+  font-family: var(--font-sans) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.95) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 24px 50px rgba(15, 41, 66, 0.18) !important;
+  color: var(--ink) !important;
+}
+
+.swal-glass-popup .swal2-title {
+  color: var(--ink) !important;
+  font-size: 1.35rem !important;
+  font-weight: 700 !important;
+}
+
+.swal-glass-popup .swal2-html-container {
+  color: var(--muted) !important;
+  font-size: 0.95rem !important;
+}
